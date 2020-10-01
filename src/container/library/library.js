@@ -8,12 +8,16 @@ class Library extends Component {
         this.props.onInitData();
     }
     dataRender() {
-        console.log(this.props)
         switch(this.props.status){
             case 200:
                 return(
-                    this.props.games.map(x => {
-                        return <p>{x}, </p>
+                    this.props.games.map((i, key) => {
+                        return <p key={key}>
+                                    id: {i.id}, <br />
+                                    game: {i.game}, <br />
+                                    description: {i.description}
+                                </p>
+                        
                     })
                 )
             case 503:

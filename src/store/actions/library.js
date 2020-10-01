@@ -17,11 +17,10 @@ export const serviceFailure = () => {
 export const initData = () => {
     return dispatch => {
         $.ajax({
-            url: 'https://asia-east2-project-gae-290607.cloudfunctions.net/api/games',
+            url: 'https://cors-anywhere.herokuapp.com/https://asia-east2-project-gae-290607.cloudfunctions.net/api/games',
             type: 'GET',
             cache: false,
             success: response => {
-                console.log(response)
                 dispatch(setData(response));
             },
             error: error => {
