@@ -1,0 +1,2 @@
+export const SET_DATA_GAMES = 'SET_DATA_GAMES';
+export const SERVICE_DOWN = 'SERVICE_DOWN';

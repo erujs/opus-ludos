@@ -1,0 +1,1 @@
+export { initData } from './library';
