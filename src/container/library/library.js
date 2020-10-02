@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import AppErr from '../../AppErr';
 import * as actions from '../../store/actions/index';
+import Cards from '../../components/cards/cards';
 
 class Library extends Component {
     componentDidMount() {
@@ -11,14 +12,7 @@ class Library extends Component {
         switch(this.props.status){
             case 200:
                 return(
-                    this.props.games.map((i, key) => {
-                        return <p key={key}>
-                                    id: {i.id}, <br />
-                                    game: {i.game}, <br />
-                                    description: {i.description}
-                                </p>
-                        
-                    })
+                    <Cards />
                 )
             case 503:
                 return <AppErr errorcode={"[503] Service Unavailable!"} 
@@ -37,8 +31,7 @@ class Library extends Component {
 
 const mapStateToProps = state => {
     return {
-        status: state.status,
-        games: state.games
+        status: state.status
     };
 }
 
