@@ -1,0 +1,8 @@
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.box{
+    outline-style: dashed !important;
+}

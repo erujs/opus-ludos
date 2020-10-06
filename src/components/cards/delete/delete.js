@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button} from '@material-ui/core';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 class Delete extends Component {
     constructor(props) {
@@ -12,13 +12,13 @@ class Delete extends Component {
         }
     }
 
-    deleteHandler = (id) => {
-        console.log(id)
+    deleteHandler = () => {
+        this.props.onDeleteData(this.props.id)
     }
 
     render() {
         return (
-            <Button size="small" color="primary" onClick={this.deleteHandler(this.props.id)}>
+            <Button size="small" color="primary" onClick={this.deleteHandler}>
                 Delete
             </Button>
         )
@@ -27,7 +27,7 @@ class Delete extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddData: (data) => dispatch(actions.postData(data))
+        onDeleteData: (id) => dispatch(actions.deleteData(id))
     }
 }
 
