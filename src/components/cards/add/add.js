@@ -20,18 +20,17 @@ class Add extends Component {
 
     changeHandler = (event) => {
         this.setState({ [event.target.id]: event.target.value })
-        console.log(this.state)
     }
 
     render() {
         return (
             <Grid xs={12} sm={6} md={4}>
-                <Paper classes={{
+                {/* <Paper classes={{
                     root: classes.box
                 }} elevation={0}  className={classes.box}>
                     something
-                </Paper>
-                {/* <Card>
+                </Paper> */}
+                <Card>
                     <CardContent>
                         <TextField
                             gutterBottom variant="h5" component="h2"
@@ -44,7 +43,7 @@ class Add extends Component {
                     <CardActions>
                         <Button size="small" color="primary" onClick={this.submitHandler}>Add</Button>
                     </CardActions>
-                </Card> */}
+                </Card>
             </Grid>
         )
     }

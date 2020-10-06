@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import AppErr from '../../AppErr';
 import * as actions from '../../store/actions/index';
 import Admin from '../../components/admin/admin';
-import Loading from '../../components/loader/loader';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 class Library extends Component {
     componentDidMount() {
-        // this.props.onInitData();
+        this.props.onInitData();
     }
     dataRender() {
         switch(this.props.status){
@@ -23,13 +22,11 @@ class Library extends Component {
                 return <AppErr errorcode={"[204] No Response!"} 
                     info={"Data cannot find in the server, check URL or contact the administrator"}/>
             default:
-                // return <LinearProgress />
-                return <p>Loading</p>
+                return <LinearProgress />
         }
     }
     render() {
         return this.dataRender();
-        // return <Admin />
     }
 }
 

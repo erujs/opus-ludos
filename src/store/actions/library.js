@@ -52,20 +52,19 @@ export const postData = (data) => {
 
 export const deleteData = (id) => {
     return dispatch => {
-        console.log(id)
-        // $.ajax({
-        //     url: 'https://cors-anywhere.herokuapp.com/https://asia-east2-project-gae-290607.cloudfunctions.net/api/delete/',
-        //     type: 'DELETE',
-        //     data: JSON.stringify(id),
-        //     contentType: "application/json",
-        //     cache: false,
-        //     success: response => {
-        //         dispatch(initData());
-        //     },
-        //     error: error => {
-        //         console.log(error);
-        //         dispatch(serviceFailure());
-        //     }
-        // })
+        $.ajax({
+            url: 'https://cors-anywhere.herokuapp.com/https://asia-east2-project-gae-290607.cloudfunctions.net/api/delete/',
+            type: 'DELETE',
+            data: JSON.stringify(id),
+            contentType: "application/json",
+            cache: false,
+            success: response => {
+                dispatch(initData());
+            },
+            error: error => {
+                console.log(error);
+                dispatch(serviceFailure());
+            }
+        })
     }
 }
