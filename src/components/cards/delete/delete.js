@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Button} from '@material-ui/core';
+import { Button, Typography, Paper } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import Modal from '../../modal/modal';
 
 class Delete extends Component {
     constructor(props) {
@@ -14,7 +16,12 @@ class Delete extends Component {
 
     render() {
         return (
-            <Button size="small" color="primary" onClick={this.deleteHandler}>Delete</Button>
+            <Modal children={
+                <Paper>
+                    <Typography>Are you sure?</Typography>
+                    <Button size="small" color="primary" onClick={this.deleteHandler}>Delete</Button>
+                </Paper>
+            } icon={<DeleteOutlineIcon />} />
         )
     }
 }

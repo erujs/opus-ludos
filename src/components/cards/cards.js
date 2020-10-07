@@ -5,11 +5,14 @@ import { Button,
         CardContent,
         CardMedia,
         Grid,
-        Typography } from '@material-ui/core';
+        Typography,
+        Slide } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Add from './add/add';
 import Delete from './delete/delete';
+import Edit from './edit/edit';
+
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -28,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Cards = (props) => {
     const classes = useStyles();
     let cards = props.games.map((card) => (
-        <Grid key={card.id} xs={12} sm={6} md={4} item>
+        <Grid key={card.id} xs={12} sm={6} md={4} item data-aos="fade-up">
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}
@@ -44,17 +47,19 @@ const Cards = (props) => {
                 </CardContent>
                 <CardActions>
                     <Delete id={card.id} />
-                    <Button size="small" color="primary">Edit</Button>
+                    <Edit />
                 </CardActions>
             </Card>
         </Grid>
     ))
+    // const { window } = props;
+    // const trigger = {target: window ? window() : undefined};
     return (
         <React.Fragment>
             <Add />
-            <div data-aos="fade-up">
-            {cards}
-            </div>
+            {/* <Slide appear={false} direction="down" in={!trigger}> */}
+                {cards}
+            {/* </Slide> */}
         </React.Fragment>
     );
 }
