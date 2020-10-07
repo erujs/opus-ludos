@@ -12,10 +12,6 @@ import Add from './add/add';
 import Delete from './delete/delete';
 
 const useStyles = makeStyles((theme) => ({
-    cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-    },
     card: {
         height: '100%',
         display: 'flex',
@@ -32,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const Cards = (props) => {
     const classes = useStyles();
     let cards = props.games.map((card) => (
-        <Grid key={card} xs={12} sm={6} md={4}>
+        <Grid key={card.id} xs={12} sm={6} md={4} item>
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}
@@ -55,8 +51,10 @@ const Cards = (props) => {
     ))
     return (
         <React.Fragment>
-            {cards}
             <Add />
+            <div data-aos="fade-up">
+            {cards}
+            </div>
         </React.Fragment>
     );
 }

@@ -8,14 +8,8 @@ class Delete extends Component {
         super(props);
     }
 
-    submitHandler = () => {
-        this.props.onDeleteData(this.state)
-    }
-
     deleteHandler = () => {
-        this.setState({ id: this.props.id });
-        console.log(this.state)
-        // this.submitHandler()
+        this.setState({ id: this.props.id }, () => this.props.onDeleteData(this.state))
     }
 
     render() {

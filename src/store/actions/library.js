@@ -32,6 +32,7 @@ export const initData = () => {
 };
 
 export const postData = (data) => {
+    console.log(data)
     return dispatch => {
         $.ajax({
             url: 'https://cors-anywhere.herokuapp.com/https://asia-east2-project-gae-290607.cloudfunctions.net/api/insert/',

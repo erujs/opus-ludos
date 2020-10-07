@@ -24,7 +24,7 @@ class Add extends Component {
 
     render() {
         return (
-            <Grid xs={12} sm={6} md={4}>
+            <Grid xs={12} sm={6} md={4} item>
                 {/* <Paper classes={{
                     root: classes.box
                 }} elevation={0}  className={classes.box}>

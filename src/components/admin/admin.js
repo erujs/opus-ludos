@@ -10,6 +10,10 @@ import Cards from '../cards/cards';
 import Footer from '../footer/footer';
 
 const useStyles = makeStyles((theme) => ({
+    cardGrid: {
+        paddingTop: theme.spacing(8),
+        paddingBottom: theme.spacing(8),
+    },
     icon: {
         marginRight: theme.spacing(2),
     },
@@ -38,7 +42,7 @@ const Home = (props) => {
                 </div>
                 <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={4}>
-                        <Cards />
+                        <Cards page={"view"}/>
                     </Grid>
                 </Container>
             </main>

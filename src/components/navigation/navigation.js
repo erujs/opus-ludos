@@ -9,9 +9,7 @@ const customTheme = createMuiTheme({
     overrides: {
         MuiAppBar: {
             colorPrimary: {
-                // background: 'linear-gradient(90deg, #CC99FF 0%, #7500C0 35%)',
-                backgroundColor: 'white',
-                borderBottom: '1px solid #7500C0'
+                background: 'linear-gradient(90deg, #CC99FF 0%, #7500C0 35%)'
             }
         }
     }
@@ -19,11 +17,7 @@ const customTheme = createMuiTheme({
 
 const useStyles = makeStyles((theme) => ({
     icon: {
-        marginRight: theme.spacing(2),
-        color: '#7500C0'
-    },
-    typography: {
-        color: '#7500C0'
+        marginRight: theme.spacing(2)
     }
 }));
 
