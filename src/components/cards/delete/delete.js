@@ -11,7 +11,7 @@ class Delete extends Component {
     }
 
     deleteHandler = () => {
-        this.setState({ id: this.props.id }, () => this.props.onDeleteData(this.state))
+        this.props.onDeleteData(this.props.uuid);
     }
 
     render() {
@@ -28,7 +28,7 @@ class Delete extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onDeleteData: (id) => dispatch(actions.deleteData(id))
+        onDeleteData: (uuid) => dispatch(actions.deleteData(uuid))
     }
 }
 

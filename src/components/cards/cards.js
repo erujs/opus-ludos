@@ -1,12 +1,10 @@
 import React from 'react';
-import { Button,
-        Card,
+import { Card,
         CardActions,
         CardContent,
         CardMedia,
         Grid,
-        Typography,
-        Slide } from '@material-ui/core';
+        Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Add from './add/add';
@@ -30,23 +28,28 @@ const useStyles = makeStyles((theme) => ({
 
 const Cards = (props) => {
     const classes = useStyles();
-    let cards = props.games.map((card) => (
-        <Grid key={card.id} xs={12} sm={6} md={4} item data-aos="fade-up">
+    console.log(props.games)
+    let cards =
+        props.games.map((card) => (
+        <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
             <Card className={classes.card}>
                 <CardMedia
                     className={classes.cardMedia}
                     image="https://source.unsplash.com/random"
                     title="Image title"/>
                 <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {card.game}
+                    <Typography variant="h5" component="h2">
+                        {card.game_name} {card.version}
                     </Typography>
                     <Typography>
-                        {card.description}
+                        {card.publisher} {card.date_created}
+                    </Typography>
+                    <Typography>
+                        {card.genre} {card.status}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Delete id={card.id} />
+                    <Delete uuid={card.uuid} />
                     <Edit />
                 </CardActions>
             </Card>

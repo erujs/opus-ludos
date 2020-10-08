@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AppErr from '../../AppErr';
 import * as actions from '../../store/actions/index';
