@@ -45,8 +45,9 @@ export const postData = (data) => {
 
 //delete
 export const deleteData = (uuid) => {
+    console.log(uuid)
     return dispatch => {
-        axios.delete('/game/add' + uuid)
+        axios.delete('/game/' + uuid)
         .then(response => {
             console.log(response)
             dispatch(initData())
