@@ -1,1 +1,1 @@
-export { initData, postData, deleteData } from './library';
+export { initData, createData, deleteData, editData, uploadImage } from './library';

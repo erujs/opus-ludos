@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
-import classes from './add.css';
 import { Grid, 
         TextField, 
         Button, 
@@ -9,24 +8,32 @@ import { Grid,
         FormControl, 
         Select, 
         InputLabel, 
-        MenuItem } from '@material-ui/core';
+        MenuItem,
+        Box } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Modal from '../../modal/modal';
+import './add.css';
 
+const initialState = {
+    game_name: null,
+    publisher: null,
+    genre: 1,
+    version: null,
+    status: 1
+};
 class Add extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            game_name: null,
-            publisher: null,
-            genre: null,
-            version: null,
-            status: null
-        }
+        this.state = initialState;
+        this.fileInput = React.createRef();
+    }
+    reset() {
+        this.setState(initialState);
     }
 
     submitHandler = () => {
-        this.props.onAddData(this.state)
+        this.props.onAddData(this.state);
+        this.reset();
     }
 
     changeHandler = (event) => {
@@ -34,87 +41,93 @@ class Add extends Component {
     }
 
     selectHandler = (event) => {
-        console.log(event)
         this.setState({ [event.target.name]: event.target.value })
     }
 
+    // uploadImage = (event) => {
+    //     const formData = new FormData()
+    //     formData.append('file', this.fileInput.current.files[0].name)
+    //     fetch("https://asia-southeast2-gknb-api.cloudfunctions.net/gknb-storage-function/uploads", {
+    //         method: 'POST',
+    //         body: formData
+    //     })
+    //     .then(res => res.json())
+    //     .then(
+    //         (result) => console.log(result),
+    //         (error) => console.log(error)
+    //     )
+    // }
+
+    // imageHandler = (event) => {
+    //     event.preventDefault();
+    //     this.uploadImage(event);
+    // }
+
     render() {
-        console.log(this.state)
+        // console.log(this.fileInput.current.files[0])
         return (
             <Grid xs={12} sm={6} md={4} item>
-                <div style={{
-                    border: '2px solid #7500C0',
-                    height: '335px', borderRadius: '4px',
-                    display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                    <Modal children={
-                        <Paper>
-                            <TextField
-                                gutterBottom variant="h5" component="h2"
-                                id="game_name" label="Game Name" variant="outlined"
-                                onChange={this.changeHandler.bind(this)} />
-                            <TextField
-                                id="publisher" label="Publisher" variant="outlined"
-                                onChange={this.changeHandler.bind(this)} />
-
-
-                            <FormControl variant="outlined" className={classes.formControl}
-                                style={{minWidth: '240px'}}>
-                                <InputLabel id="demo-simple-select-outlined-label">Genre</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-outlined-label"
-                                    name="genre"
-                                    defaultValue={this.state.genre || ''}
-                                    onChange={this.selectHandler.bind(this)}
-                                    label="Genre"
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={1}>Action</MenuItem>
-                                    <MenuItem value={2}>Adventure</MenuItem>
-                                    <MenuItem value={3}>MMORPG</MenuItem>
-                                    <MenuItem value={4}>RPG</MenuItem>
-                                    <MenuItem value={5}>Simulation</MenuItem>
-                                    <MenuItem value={6}>Strategy</MenuItem>
-                                    <MenuItem value={7}>Sports</MenuItem>
-                                    <MenuItem value={8}>MMO</MenuItem>
-                                    <MenuItem value={9}>Party</MenuItem>
-                                    <MenuItem value={10}>Programming</MenuItem>
-                                    <MenuItem value={11}>Trivia</MenuItem>
-                                </Select>
-                            </FormControl>
-
-                            <TextField
-                                id="version" label="Version" variant="outlined"
-                                onChange={this.changeHandler.bind(this)} />
-                            
-                            <FormControl variant="outlined" className={classes.formControl}
-                                style={{minWidth: '240px'}}>
-                                <InputLabel id="demo-simple-select-outlined-label">Status</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-outlined-label"
-                                    name="status"
-                                    defaultValue={this.state.status || ''}
-                                    onChange={this.selectHandler.bind(this)}
-                                    label="Status"
-                                >
-                                    <MenuItem value="">
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={1}>Active</MenuItem>
-                                    <MenuItem value={2}>Beta</MenuItem>
-                                    <MenuItem value={3}>Under Maintenance</MenuItem>
-                                    <MenuItem value={4}>Inactive</MenuItem>
-                                </Select>
-                            </FormControl>
-
-
-
-                            <Button size="small" color="primary" onClick={this.submitHandler}>Add</Button>
-                        </Paper>
-                    } icon={<AddIcon />} />
-                </div>
+                <Modal children={
+                    <Paper className="paper">
+                    {/* <form onSubmit={this.imageHandler.bind(this)}>
+                        <label>
+                          Upload file:
+                          <input name='file' type="file" ref={this.fileInput} encType="multipart/form-data" />
+                        </label>
+                        <br />
+                        <button type="submit">Submit</button>
+                    </form> */}
+                        <TextField
+                            id="game_name" label="Game Name" variant="outlined" className="field"
+                            onChange={this.changeHandler.bind(this)} />
+                        <TextField
+                            id="publisher" label="Publisher" variant="outlined" className="field"
+                            onChange={this.changeHandler.bind(this)} />
+                        <FormControl variant="outlined" className="field">
+                            <InputLabel id="genre">Genre</InputLabel>
+                            <Select
+                                name="genre"
+                                defaultValue={1}
+                                onChange={this.selectHandler.bind(this)}
+                                label="Genre"
+                            >
+                                <MenuItem value={1}>Action</MenuItem>
+                                <MenuItem value={2}>Adventure</MenuItem>
+                                <MenuItem value={3}>MMORPG</MenuItem>
+                                <MenuItem value={4}>RPG</MenuItem>
+                                <MenuItem value={5}>Simulation</MenuItem>
+                                <MenuItem value={6}>Strategy</MenuItem>
+                                <MenuItem value={7}>Sports</MenuItem>
+                                <MenuItem value={8}>MMO</MenuItem>
+                                <MenuItem value={9}>Party</MenuItem>
+                                <MenuItem value={10}>Programming</MenuItem>
+                                <MenuItem value={11}>Trivia</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <TextField
+                            id="version" label="Version" variant="outlined" className="field"
+                            onChange={this.changeHandler.bind(this)} />
+                        
+                        <FormControl variant="outlined" className="field">
+                            <InputLabel id="status">Status</InputLabel>
+                            <Select
+                                name="status"
+                                defaultValue={1}
+                                onChange={this.selectHandler.bind(this)}
+                                label="Status"
+                            >
+                                <MenuItem value={1}>Active</MenuItem>
+                                <MenuItem value={2}>Beta</MenuItem>
+                                <MenuItem value={3}>Under Maintenance</MenuItem>
+                                <MenuItem value={4}>Inactive</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Box className="box">
+                            <Button variant="outlined" className="modal-btn" onClick={() => this.props.onAddData(this.state)}>Add</Button>
+                            <Button variant="outlined" className="modal-btn">Cancel</Button>
+                        </Box>
+                    </Paper>
+                } icon={<Button className="modal-trigger"><AddIcon fontSize='large' /></Button>} />
             </Grid>
         )
     }
@@ -122,7 +135,8 @@ class Add extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddData: (data) => dispatch(actions.postData(data))
+        onAddData: (data) => dispatch(actions.createData(data)),
+        // onUploadImage: (event) => dispatch(actions.uploadImage(event))
     }
 }
 

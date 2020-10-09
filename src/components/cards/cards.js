@@ -10,7 +10,8 @@ import { connect } from 'react-redux';
 import Add from './add/add';
 import Delete from './delete/delete';
 import Edit from './edit/edit';
-
+import moment from 'moment';
+import './cards.css'
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -23,14 +24,16 @@ const useStyles = makeStyles((theme) => ({
     },
     cardContent: {
         flexGrow: 1,
+    },
+    cardActions: {
+        display: 'flex',
+        justifyContent: 'flex-end',
     }
 }));
 
 const Cards = (props) => {
     const classes = useStyles();
-    console.log(props.games)
-    let cards =
-        props.games.map((card) => (
+    let cards = props.games.map((card) => (
         <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
             <Card className={classes.card}>
                 <CardMedia
@@ -38,19 +41,17 @@ const Cards = (props) => {
                     image="https://source.unsplash.com/random"
                     title="Image title"/>
                 <CardContent className={classes.cardContent}>
-                    <Typography variant="h5" component="h2">
-                        {card.game_name} {card.version}
-                    </Typography>
+                    <Typography variant="h5" component="h2">{card.game_name} </Typography>
                     <Typography>
-                        {card.publisher} {card.date_created}
-                    </Typography>
-                    <Typography>
-                        {card.genre} {card.status}
-                    </Typography>
+                        v{card.version} &nbsp;
+                        {moment(card.date_created).format('MMMM Do YYYY')}</Typography>
+                    <span className='publisher'>{card.publisher}</span>
+                    <Typography>Genre: {card.genre}</Typography>
+                    <Typography>Status: {card.status}</Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions className={classes.cardActions}>
                     <Delete uuid={card.uuid} />
-                    <Edit />
+                    <Edit card={card} />
                 </CardActions>
             </Card>
         </Grid>

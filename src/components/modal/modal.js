@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Modal, Backdrop, Fab } from '@material-ui/core';
+import { Modal, Backdrop, Box } from '@material-ui/core';
 import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme) => ({
@@ -8,13 +8,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    paper: {
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #7500C0',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-    },
+    }
 }));
 
 export default function GlobalModal(props) {
@@ -31,10 +25,8 @@ export default function GlobalModal(props) {
 
     return (
         <React.Fragment>
-            <Fab color="primary" aria-label="add" onClick={handleOpen}>{props.icon}</Fab>
+            <Box onClick={handleOpen}>{props.icon}</Box>
             <Modal
-                aria-labelledby="transition-modal-title"
-                aria-describedby="transition-modal-description"
                 className={classes.modal}
                 open={open}
                 onClose={handleClose}

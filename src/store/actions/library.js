@@ -29,10 +29,10 @@ export const initData = () => {
 };
 
 //create
-export const postData = (data) => {
+export const createData = (data) => {
     console.log(data)
     return dispatch => {
-        axios.post('/game/add', {game_name: "Something", publisher: "Something", genre: 1, version: "1.0", status: 1})
+        axios.post('/game/add', data)
         .then(response => {
             console.log(response)
             dispatch(initData())
@@ -45,7 +45,6 @@ export const postData = (data) => {
 
 //delete
 export const deleteData = (uuid) => {
-    console.log(uuid)
     return dispatch => {
         axios.delete('/game/' + uuid)
         .then(response => {
@@ -56,4 +55,34 @@ export const deleteData = (uuid) => {
             dispatch(serviceFailure())
         })
     }
+}
+
+//update
+export const editData = (uuid, data) => {
+    console.log(data)
+    return dispatch => {
+        axios.patch('/game/' + uuid, data)
+        .then(response => {
+            console.log(response)
+            dispatch(initData())
+        }).catch(error => {
+            console.log(error)
+            dispatch(serviceFailure())
+        })
+    }
+}
+
+//upload image
+export const uploadImage = (event) => {
+    const formData = new FormData()
+    formData.append('file', event.target.files[0])
+    fetch("https://asia-southeast2-gknb-api.cloudfunctions.net/gknb-storage-function/uploads", {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(
+        (result) => console.log(result),
+        (error) => serviceFailure()
+    )
 }

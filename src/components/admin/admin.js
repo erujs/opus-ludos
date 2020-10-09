@@ -17,9 +17,16 @@ const useStyles = makeStyles((theme) => ({
     icon: {
         marginRight: theme.spacing(2),
     },
+    Typography: {
+        color: 'white'
+    },
     heroContent: {
-        backgroundColor: theme.palette.background.paper,
+        // background: 'linear-gradient(90deg, #CC99FF 0%, #7500C0 50%)',
+        background: 'url("https://source.unsplash.com/fGEEJ7Z8cIA")',
+        backgroundSize: '100% 100%',
+        backgroundRepeat: 'no-repeat',
         padding: theme.spacing(8, 0, 6),
+        height: '100vh'
     }
 }));
 
@@ -32,10 +39,10 @@ const Home = (props) => {
             <main>
                 <div className={classes.heroContent}>
                     <Container maxWidth="sm">
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                        <Typography component="h1" variant="h2" align="center" className={classes.Typography}>
                             Hello Admin
                         </Typography>
-                        <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                        <Typography variant="h5" align="center" paragraph className={classes.Typography}>
                             GKNB is a web application game launcher prototype... In this page you can modify/add a game to the library
                         </Typography>
                     </Container>

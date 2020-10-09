@@ -1,0 +1,17 @@
+.paper{
+    padding: 2rem;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-btn{
+    min-width: 40% !important;
+}
+.deleteBox{
+    margin-top: 1rem; 
+    width: 100%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
