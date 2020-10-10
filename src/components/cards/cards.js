@@ -1,69 +1,41 @@
 import React from 'react';
 import { Card,
-        CardActions,
         CardContent,
         CardMedia,
         Grid,
         Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import Add from './add/add';
-import Delete from './delete/delete';
-import Edit from './edit/edit';
 import moment from 'moment';
+import 'aos/dist/aos.css'
+import AOS from 'aos';
 import './cards.css'
-
-const useStyles = makeStyles((theme) => ({
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia: {
-        paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-        flexGrow: 1,
-    },
-    cardActions: {
-        display: 'flex',
-        justifyContent: 'flex-end',
-    }
-}));
+import ActionCard from './cardactions';
 
 const Cards = (props) => {
-    const classes = useStyles();
+    AOS.init();
     let cards = props.games.map((card) => (
         <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
-            <Card className={classes.card}>
-                <CardMedia
-                    className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"/>
-                <CardContent className={classes.cardContent}>
-                    <Typography variant="h5" component="h2">{card.game_name} </Typography>
-                    <Typography>
-                        v{card.version} &nbsp;
-                        {moment(card.date_created).format('MMMM Do YYYY')}</Typography>
-                    <span className='publisher'>{card.publisher}</span>
-                    <Typography>Genre: {card.genre}</Typography>
-                    <Typography>Status: {card.status}</Typography>
-                </CardContent>
-                <CardActions className={classes.cardActions}>
-                    <Delete uuid={card.uuid} />
-                    <Edit card={card} />
-                </CardActions>
+            <Card className='card'>
+                <CardMedia className="cardMedia" image="https://source.unsplash.com/random" />
+                    <ActionCard card={card} uuid={card.uuid} />
+                    <CardContent className="cardContent">
+                        <Typography className="Typography" variant="h5" component="h2">{card.game_name} </Typography>
+                        <Typography className="Typography">
+                            v{card.version} &nbsp;
+                            {moment(card.date_created).format('MMMM Do YYYY')}</Typography>
+                        <Typography className="publisher">{card.publisher}</Typography>
+                        <Typography className="Typography">Genre: {card.genre}</Typography>
+                        <Typography className="Typography">Status: {card.status}</Typography>
+                    </CardContent>
             </Card>
         </Grid>
     ))
-    // const { window } = props;
-    // const trigger = {target: window ? window() : undefined};
     return (
         <React.Fragment>
             <Add />
-            {/* <Slide appear={false} direction="down" in={!trigger}> */}
-                {cards}
-            {/* </Slide> */}
+            {cards}
+            <div data-aos="fade-up" />
         </React.Fragment>
     );
 }

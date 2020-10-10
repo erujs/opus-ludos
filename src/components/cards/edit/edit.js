@@ -97,12 +97,12 @@ class Edit extends Component {
                             </Select>
                         </FormControl>
                         <Box className="box">
-                            <Button variant="outlined" className="modal-btn" 
+                            <Button variant="outlined" className="editModalBtn" 
                                 onClick={() => this.props.onEditData(this.props.card.uuid, this.state)}>Edit</Button>
-                            <Button variant="outlined" className="modal-btn">Cancel</Button>
+                            <Button variant="outlined" className="editModalBtn">Cancel</Button>
                         </Box>
                     </Paper>
-                } icon={<Button variant="outlined"><EditIcon fontSize='large' /></Button>} />
+                } icon={<Button className="editButton"><EditIcon /></Button>} />
             </Grid>
         )
     }

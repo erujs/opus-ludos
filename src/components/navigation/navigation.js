@@ -9,7 +9,9 @@ const customTheme = createMuiTheme({
     overrides: {
         MuiAppBar: {
             colorPrimary: {
-                backgroundColor: '#7500C0'
+                backgroundColor: '#7500C0',
+                backgroundImage: 'linear-gradient(230deg, #77eed8 0%, #7500C0 74%)'
+
             }
         }
     }

@@ -123,11 +123,11 @@ class Add extends Component {
                             </Select>
                         </FormControl>
                         <Box className="box">
-                            <Button variant="outlined" className="modal-btn" onClick={() => this.props.onAddData(this.state)}>Add</Button>
-                            <Button variant="outlined" className="modal-btn">Cancel</Button>
+                            <Button variant="outlined" className="addModalBtn" onClick={() => this.props.onAddData(this.state)}>Add</Button>
+                            <Button variant="outlined" className="addModalBtn">Cancel</Button>
                         </Box>
                     </Paper>
-                } icon={<Button className="modal-trigger"><AddIcon fontSize='large' /></Button>} />
+                } icon={<Button className="addButton"><AddIcon fontSize='large' /></Button>} />
             </Grid>
         )
     }

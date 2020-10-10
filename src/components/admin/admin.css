@@ -1,0 +1,30 @@
+.adminBox{
+    background: url("https://source.unsplash.com/0ZPSX_mQ3xI");
+    background-size: 100%;
+    /* background-repeat: no-repeat; */
+    padding-bottom: calc(6 * 8px);
+    /* scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    scroll-behavior: smooth; */
+}
+.heroContent {
+    /* scroll-snap-align: start; */
+    height: 50vh;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.cardGrid {
+    padding-bottom: calc(8 * 8px)
+}
+.icon {
+    margin-right: calc(2 * 8px);
+}
+@media(min-width: 1024px){
+    .adminBox{
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+}

@@ -1,9 +1,9 @@
-.modal-trigger{
+.addButton{
     border: 2px dashed #7500C0 !important;
     height: 335px; 
     width: 100%; 
 }
-.modal-btn{
+.addModalBtn{
     min-width: 40% !important;
 }
 .paper{
