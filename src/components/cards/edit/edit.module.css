@@ -1,0 +1,17 @@
+.box{
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+.field{
+    margin: .5rem 0 !important;
+    width: 100%;
+}
+.editButton{
+    background-color: #aff6cf;
+    background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
+}
+.editModalBtn{
+    min-width: 40% !important;
+}

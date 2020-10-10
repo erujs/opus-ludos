@@ -4,15 +4,14 @@ import * as actions from '../../../store/actions/index';
 import { Grid, 
         TextField, 
         Button, 
-        Paper, 
         FormControl, 
         Select, 
         InputLabel, 
         MenuItem,
         Box } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import Modal from '../../modal/modal';
-import './add.css';
+import Dialog from '../../modal/dialog';
+import classes from './add.module.css';
 
 const initialState = {
     game_name: null,
@@ -67,8 +66,8 @@ class Add extends Component {
         // console.log(this.fileInput.current.files[0])
         return (
             <Grid xs={12} sm={6} md={4} item>
-                <Modal children={
-                    <Paper className="paper">
+                <Dialog title={"Add a game content"} children={
+                    <Box className={classes.box}>
                     {/* <form onSubmit={this.imageHandler.bind(this)}>
                         <label>
                           Upload file:
@@ -78,12 +77,12 @@ class Add extends Component {
                         <button type="submit">Submit</button>
                     </form> */}
                         <TextField
-                            id="game_name" label="Game Name" variant="outlined" className="field"
+                            id="game_name" label="Game Name" variant="outlined" className={classes.field}
                             onChange={this.changeHandler.bind(this)} />
                         <TextField
-                            id="publisher" label="Publisher" variant="outlined" className="field"
+                            id="publisher" label="Publisher" variant="outlined" className={classes.field}
                             onChange={this.changeHandler.bind(this)} />
-                        <FormControl variant="outlined" className="field">
+                        <FormControl variant="outlined" className={classes.field}>
                             <InputLabel id="genre">Genre</InputLabel>
                             <Select
                                 name="genre"
@@ -105,10 +104,10 @@ class Add extends Component {
                             </Select>
                         </FormControl>
                         <TextField
-                            id="version" label="Version" variant="outlined" className="field"
+                            id="version" label="Version" variant="outlined" className={classes.field}
                             onChange={this.changeHandler.bind(this)} />
                         
-                        <FormControl variant="outlined" className="field">
+                        <FormControl variant="outlined" className={classes.field}>
                             <InputLabel id="status">Status</InputLabel>
                             <Select
                                 name="status"
@@ -122,12 +121,11 @@ class Add extends Component {
                                 <MenuItem value={4}>Inactive</MenuItem>
                             </Select>
                         </FormControl>
-                        <Box className="box">
-                            <Button variant="outlined" className="addModalBtn" onClick={() => this.props.onAddData(this.state)}>Add</Button>
-                            <Button variant="outlined" className="addModalBtn">Cancel</Button>
-                        </Box>
-                    </Paper>
-                } icon={<Button className="addButton"><AddIcon fontSize='large' /></Button>} />
+                    </Box>
+                } icon={<Button className={classes.addButton}><AddIcon fontSize='large' /></Button>} 
+                modalAction={
+                    <Button variant="outlined" className={classes.addModalBtn} onClick={() => this.props.onAddData(this.state)}>Add</Button>
+                } />
             </Grid>
         )
     }

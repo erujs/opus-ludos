@@ -4,15 +4,14 @@ import * as actions from '../../../store/actions/index';
 import { Grid, 
         TextField, 
         Button, 
-        Paper, 
         FormControl, 
         Select, 
         InputLabel, 
         MenuItem,
         Box } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
-import Modal from '../../modal/modal';
-import './edit.css';
+import Dialog from '../../modal/dialog';
+import classes from './edit.module.css';
 
 class Edit extends Component {
     constructor(props) {
@@ -47,17 +46,17 @@ class Edit extends Component {
     render() {
         return (
             <Grid xs={12} sm={6} md={4} item>
-                <Modal children={
-                    <Paper className="paper">
+                <Dialog title={"Edit"} children={
+                    <Box className={classes.box}>
                         <TextField
-                            id="game_name" label="Game Name" variant="outlined" className="field"
+                            id="game_name" label="Game Name" variant="outlined" className={classes.field}
                             value={this.state.game_name}
                             onChange={this.changeHandler.bind(this)} />
                         <TextField
-                            id="publisher" label="Publisher" variant="outlined" className="field"
+                            id="publisher" label="Publisher" variant="outlined" className={classes.field}
                             value={this.state.publisher}
                             onChange={this.changeHandler.bind(this)} />
-                        <FormControl variant="outlined" className="field">
+                        <FormControl variant="outlined" className={classes.field}>
                             <InputLabel id="genre">Genre</InputLabel>
                             <Select
                                 name="genre"
@@ -79,10 +78,10 @@ class Edit extends Component {
                             </Select>
                         </FormControl>
                         <TextField
-                            id="version" label="Version" variant="outlined" className="field"
+                            id="version" label="Version" variant="outlined" className={classes.field}
                             value={this.state.version}
                             onChange={this.changeHandler.bind(this)} />
-                        <FormControl variant="outlined" className="field">
+                        <FormControl variant="outlined" className={classes.field}>
                             <InputLabel id="status">Status</InputLabel>
                             <Select
                                 name="status"
@@ -96,13 +95,12 @@ class Edit extends Component {
                                 <MenuItem value={4}>Inactive</MenuItem>
                             </Select>
                         </FormControl>
-                        <Box className="box">
-                            <Button variant="outlined" className="editModalBtn" 
-                                onClick={() => this.props.onEditData(this.props.card.uuid, this.state)}>Edit</Button>
-                            <Button variant="outlined" className="editModalBtn">Cancel</Button>
-                        </Box>
-                    </Paper>
-                } icon={<Button className="editButton"><EditIcon /></Button>} />
+                    </Box>
+                } icon={<Button className={classes.editButton}><EditIcon /></Button>} 
+                modalAction={
+                    <Button variant="outlined" className={classes.editModalBtn} 
+                        onClick={() => this.props.onEditData(this.props.card.uuid, this.state)}>Edit</Button>
+                }/>
             </Grid>
         )
     }

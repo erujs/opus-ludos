@@ -9,24 +9,25 @@ import Add from './add/add';
 import moment from 'moment';
 import 'aos/dist/aos.css'
 import AOS from 'aos';
-import './cards.css'
-import ActionCard from './cardactions';
+import classes from './cards.module.css'
+import ActionCard from '../cardactions/cardactions';
 
 const Cards = (props) => {
+    console.log(props.page)
     AOS.init();
     let cards = props.games.map((card) => (
         <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
-            <Card className='card'>
-                <CardMedia className="cardMedia" image="https://source.unsplash.com/random" />
-                    <ActionCard card={card} uuid={card.uuid} />
-                    <CardContent className="cardContent">
-                        <Typography className="Typography" variant="h5" component="h2">{card.game_name} </Typography>
-                        <Typography className="Typography">
+            <Card className={classes.card}>
+                <CardMedia className={classes.cardMedia} image="https://source.unsplash.com/random" />
+                    <ActionCard card={card} uuid={card.uuid} page={props.page}/>
+                    <CardContent className={classes.cardContent}>
+                        <Typography className={classes.Typography} variant="h5" component="h2">{card.game_name} </Typography>
+                        <Typography className={classes.Typography}>
                             v{card.version} &nbsp;
                             {moment(card.date_created).format('MMMM Do YYYY')}</Typography>
-                        <Typography className="publisher">{card.publisher}</Typography>
-                        <Typography className="Typography">Genre: {card.genre}</Typography>
-                        <Typography className="Typography">Status: {card.status}</Typography>
+                        <Typography className={classes.Typography}>Genre: {card.genre}</Typography>
+                        <Typography className={classes.Typography}>Status: {card.status}</Typography>
+                        <Typography className={classes.Typography}>{card.publisher}</Typography>
                     </CardContent>
             </Card>
         </Grid>

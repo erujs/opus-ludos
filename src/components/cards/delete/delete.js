@@ -1,32 +1,24 @@
-import React, { Component } from 'react';
-import { Button, Typography, Paper, Box } from '@material-ui/core';
+import React from 'react';
+import { Button, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import Modal from '../../modal/modal';
-import './delete';
+import Dialog from '../../modal/dialog';
+import classes from './delete.module.css';
 
-class Delete extends Component {
-    constructor(props) {
-        super(props)
-    }
-    render() {
-        return (
-            <Modal children={
-                <Paper className="paper">
-                    <Typography>Do you want to delete this game?</Typography>
-                    <Box className="deleteBox" style={{marginTop: '1rem'}}>
-                        <Button variant="outlined" onClick={() => this.props.onDeleteData(this.props.uuid)}>
-                            Delete
-                        </Button>
-                        <Button variant="outlined" onClick={null}>
-                            Cancel
-                        </Button>
-                    </Box>
-                </Paper>
-            } icon={<Button className="deleteButton"><DeleteOutlineIcon /></Button>} />
-        )
-    }
+const Delete = (props) => {
+    return (
+        <Dialog title={"Delete ?"} children={
+            <React.Fragment>
+                <Typography>Are you sure to delete this game?</Typography>
+                <Typography>*Note: you can't undo the action once you click the delete button</Typography>
+            </React.Fragment>
+        } icon={<Button className={classes.deleteButton}><DeleteOutlineIcon /></Button>} 
+        modalAction={
+            <Button variant="outlined" className={classes.deleteModalBtn}
+                onClick={() => props.onDeleteData(props.uuid)}>Delete</Button>
+        } />
+    )
 }
 
 const mapDispatchToProps = dispatch => {

@@ -8,15 +8,15 @@ import { connect } from 'react-redux';
 import Nav from '../navigation/navigation';
 import Cards from '../cards/cards';
 import Footer from '../footer/footer';
-import './admin.css'
+import classes from './admin.module.css'
 
 const Home = (props) => {
     return (
         <React.Fragment>
             <CssBaseline />
             <Nav />
-            <Box className="adminBox">
-                <Container maxWidth="sm" className="heroContent">
+            <Box className={classes.adminBox}>
+                <Container maxWidth="sm" className={classes.heroContent}>
                     <Typography component="h1" variant="h2">
                         Hello Admin
                     </Typography>
@@ -24,9 +24,9 @@ const Home = (props) => {
                         GKNB is a web application game launcher prototype... In this page you can modify/add a game to the library
                     </Typography>
                 </Container>
-                <Container className="cardGrid" maxWidth="md">
+                <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={4}>
-                        <Cards page={"view"}/>
+                        <Cards page={"admin"} />
                     </Grid>
                 </Container>
             </Box>
