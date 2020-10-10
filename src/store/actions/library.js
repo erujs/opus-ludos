@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import $ from 'jquery';
+import axios from '../../axios';
 
 export const setData = (data) => {
     return{
@@ -14,58 +14,75 @@ export const serviceFailure = () => {
     };
 };
 
+//read
 export const initData = () => {
     return dispatch => {
-        $.ajax({
-            url: 'https://cors-anywhere.herokuapp.com/https://asia-east2-project-gae-290607.cloudfunctions.net/api/games/',
-            type: 'GET',
-            cache: false,
-            success: response => {
-                dispatch(setData(response));
-            },
-            error: error => {
-                console.log(error)
-                dispatch(serviceFailure());
-            }
+        axios.post('/game/all', {'offset': 0, 'limit': 100})
+        .then(response => {
+            console.log(response)
+            dispatch(setData(response.data))
+        }).catch(error => {
+            console.log(error)
+            dispatch(serviceFailure())
         })
     };
 };
 
-export const postData = (data) => {
+//create
+export const createData = (data) => {
+    console.log(data)
     return dispatch => {
-        $.ajax({
-            url: 'https://cors-anywhere.herokuapp.com/https://asia-east2-project-gae-290607.cloudfunctions.net/api/insert/',
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: "application/json",
-            cache: false,
-            success: response => {
-                dispatch(initData());
-            },
-            error: error => {
-                console.log(error);
-                dispatch(serviceFailure());
-            }
+        axios.post('/game/add', data)
+        .then(response => {
+            console.log(response)
+            dispatch(initData())
+        }).catch(error => {
+            console.log(error)
+            dispatch(serviceFailure())
         })
     }
 }
 
-export const deleteData = (id) => {
+//delete
+export const deleteData = (uuid) => {
     return dispatch => {
-        console.log(id)
-        // $.ajax({
-        //     url: 'https://cors-anywhere.herokuapp.com/https://asia-east2-project-gae-290607.cloudfunctions.net/api/delete/',
-        //     type: 'DELETE',
-        //     data: JSON.stringify(id),
-        //     contentType: "application/json",
-        //     cache: false,
-        //     success: response => {
-        //         dispatch(initData());
-        //     },
-        //     error: error => {
-        //         console.log(error);
-        //         dispatch(serviceFailure());
-        //     }
-        // })
+        axios.delete('/game/' + uuid)
+        .then(response => {
+            console.log(response)
+            dispatch(initData())
+        }).catch(error => {
+            console.log(error)
+            dispatch(serviceFailure())
+        })
     }
+}
+
+//update
+export const editData = (uuid, data) => {
+    console.log(data)
+    return dispatch => {
+        axios.patch('/game/' + uuid, data)
+        .then(response => {
+            console.log(response)
+            dispatch(initData())
+        }).catch(error => {
+            console.log(error)
+            dispatch(serviceFailure())
+        })
+    }
+}
+
+//upload image
+export const uploadImage = (event) => {
+    const formData = new FormData()
+    formData.append('file', event.target.files[0])
+    fetch("https://asia-southeast2-gknb-api.cloudfunctions.net/gknb-storage-function/uploads", {
+        method: 'POST',
+        body: formData
+    })
+    .then(res => res.json())
+    .then(
+        (result) => console.log(result),
+        (error) => serviceFailure()
+    )
 }

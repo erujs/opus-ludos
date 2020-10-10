@@ -1,0 +1,23 @@
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.cardMedia {
+    padding-top: 60%
+}
+.cardContent {
+    flex-grow: 1;
+    background-color: #9eabe4;
+    background-image: linear-gradient(45deg, #9eabe4 0%, #77eed8 74%);
+
+}
+.publisher {
+    position: absolute;
+    bottom: calc(3 * 8px);
+    left: calc(4 * 8px);
+    color: #FFFFFF;
+}
+.Typography{
+    color: #FFFFFF;
+}

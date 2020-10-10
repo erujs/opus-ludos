@@ -1,0 +1,18 @@
+.box{
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+.field{
+    margin: .5rem 0 !important;
+    width: 100%;
+}
+.addButton{
+    border: 2px dashed #7500C0 !important;
+    height: 335px; 
+    width: 100%; 
+}
+.addModalBtn{
+    min-width: 40% !important;
+}
