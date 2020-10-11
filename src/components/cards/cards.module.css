@@ -1,5 +1,5 @@
 .card {
-    height: 100%;
+    height: 325px;
     display: flex;
     flex-direction: column;
 }
@@ -7,17 +7,20 @@
     padding-top: 60%
 }
 .cardContent {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
     flex-grow: 1;
-    background-color: #9eabe4;
-    background-image: linear-gradient(45deg, #9eabe4 0%, #77eed8 74%);
-
+    color: white;
+    background-color: #bf3a30;
+    background-image: linear-gradient(135deg, #bf3a30 0%, #864ba2 74%);
 }
-.publisher {
-    position: absolute;
-    bottom: calc(3 * 8px);
-    left: calc(4 * 8px);
-    color: #FFFFFF;
+.Typography {
+    font-size: 12px !important;
 }
-.Typography{
-    color: #FFFFFF;
+.gameName{
+    font-size: 1.25em !important;
+}
+.gameDetails{
+    text-align: right;
 }

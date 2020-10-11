@@ -122,7 +122,7 @@ class Add extends Component {
                             </Select>
                         </FormControl>
                     </Box>
-                } icon={<Button className={classes.addButton}><AddIcon fontSize='large' /></Button>} 
+                } icon={<Button className={classes.addButton}><AddIcon className={classes.plus} fontSize='large' /></Button>} 
                 modalAction={
                     <Button variant="outlined" className={classes.addModalBtn} onClick={() => this.props.onAddData(this.state)}>Add</Button>
                 } />

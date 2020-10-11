@@ -3,8 +3,8 @@ import { CardActions,
         Checkbox, 
         FormControlLabel } from '@material-ui/core';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import Delete from '../cards/delete/delete';
-import Edit from '../cards/edit/edit';
+import Delete from '../delete/delete';
+import Edit from '../edit/edit';
 import classes from './cardactions.module.css'
 
 const ActionCard = (props) => {
@@ -16,7 +16,7 @@ const ActionCard = (props) => {
         props.page === 'admin' ?
         <React.Fragment>
             <FormControlLabel
-                control={<Checkbox color="primary" icon={<MoreHorizIcon />} checkedIcon={<MoreHorizIcon />} onChange={checkboxHandler.bind(this)} />}
+                control={<Checkbox className={classes.checkbox} icon={<MoreHorizIcon />} checkedIcon={<MoreHorizIcon />} onChange={checkboxHandler.bind(this)} />}
                 className={classes.formControlLabel}
             />
             <CardActions className={isChecked ? classes.cardActions : classes.hidden}>
