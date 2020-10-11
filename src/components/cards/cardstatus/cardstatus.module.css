@@ -1,0 +1,25 @@
+.box{
+    display: flex; 
+    align-items: center;
+    position: absolute;
+    bottom: calc(3 * 8px);
+    left: calc(3.5 * 8px);
+}
+.Typography{
+    color: white;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin-left: 5px !important;
+}
+.active{
+    color: green;
+}
+.beta{
+    color: orange;
+}
+.maintenance{
+    color: yellow;
+}
+.inactive{
+    color: red;
+}
