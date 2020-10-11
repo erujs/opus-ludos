@@ -9,8 +9,8 @@ const customTheme = createMuiTheme({
     overrides: {
         MuiAppBar: {
             colorPrimary: {
-                backgroundColor: '#7500C0',
-                backgroundImage: 'linear-gradient(230deg, #77eed8 0%, #7500C0 74%)'
+                backgroundColor: '#bf3a30',
+                backgroundImage: 'linear-gradient(315deg, #bf3a30 0%, #864ba2 74%)'
 
             }
         }
@@ -30,7 +30,7 @@ const Navigation = (props) => {
             <AppBar position="relative">
                 <Toolbar>
                     <VideogameAssetIcon className={classes.icon}/>
-                    <Typography variant="h6" className={classes.typography} noWrap>GKNB</Typography>
+                    <Typography variant="h6" className={classes.typography} noWrap>gknb</Typography>
                 </Toolbar>
             </AppBar>
         </ThemeProvider>

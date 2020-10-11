@@ -9,9 +9,13 @@
     width: 100%;
 }
 .addButton{
-    border: 2px dashed #7500C0 !important;
-    height: 335px; 
+    height: 325px; 
+    /* border: 2px dashed #7500C0 !important; */
+    border: 2px dashed #FFFFFF !important;
     width: 100%; 
+}
+.plus{
+    color: white;
 }
 .addModalBtn{
     min-width: 40% !important;

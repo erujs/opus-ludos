@@ -3,7 +3,8 @@ import { CssBaseline,
         Typography,
         Container,
         Grid,
-        Box } from '@material-ui/core';
+        Box,
+        CardMedia, requirePropFactory } from '@material-ui/core';
 import { connect } from 'react-redux';
 import Nav from '../navigation/navigation';
 import Cards from '../cards/cards';
@@ -16,13 +17,18 @@ const Home = (props) => {
             <CssBaseline />
             <Nav />
             <Box className={classes.adminBox}>
-                <Container maxWidth="sm" className={classes.heroContent}>
-                    <Typography component="h1" variant="h2">
-                        Hello Admin
-                    </Typography>
-                    <Typography variant="h5" paragraph>
-                        GKNB is a web application game launcher prototype... In this page you can modify/add a game to the library
-                    </Typography>
+                <Container maxWidth="md" className={classes.heroContent}>
+                    <Box className={classes.headerText}>
+                        <Typography variant="h1" className={classes.title}>GKNB?</Typography>
+                        <Typography className={classes.description}>
+                            Games 'n' keyboards or gknb for short is a web application game launcher(prototype). Where you can submit and share your game while having fun.
+                        </Typography>
+                    </Box>
+                    <Box className={classes.headerImage}>
+                        <Box className={classes.imageContainer}>
+                            <CardMedia className={classes.image} image={require('../../assets/undraw.svg')} />
+                        </Box>
+                    </Box>
                 </Container>
                 <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={4}>
