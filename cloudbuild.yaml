@@ -1,9 +1,9 @@
 steps:
-- name: 'gcr.io/cloud-builders/gsutil'
-  args:
-  - cp
-  - ${_PRODUCTION_CONFIG}
-  - config/production.json
+# - name: 'gcr.io/cloud-builders/gsutil'
+#   args:
+#   - cp
+#   - ${_PRODUCTION_CONFIG}
+#   - config/production.json
 - name: 'gcr.io/cloud-builders/npm'
   args:
   - install
