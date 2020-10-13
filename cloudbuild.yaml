@@ -11,10 +11,10 @@ steps:
   args:
   - run
   - build
-- name: 'gcr.io/cloud-builders/npm'
-  args:
-  - run
-  - generate
+# - name: 'gcr.io/cloud-builders/npm'
+#   args:
+#   - run
+#   - generate
 - name: 'gcr.io/cloud-builders/gsutil'
   args:
   - cp
