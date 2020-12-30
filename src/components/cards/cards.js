@@ -16,7 +16,10 @@ import CardStatus from './cardstatus/cardstatus';
 
 const Cards = (props) => {
     AOS.init();
-    let cards = props.games.map((card) => (
+    let card = [
+        {'uuid':1, 'game_name':'something','publisher':'someone','version':1,'date_created':'january 1 2020','genre':'rpg','status':'Active'}
+    ]
+    let cards = card.map((card) => (
         <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
             <Card className={classes.card}>
                 <CardMedia className={classes.cardMedia} image="https://source.unsplash.com/random" />
