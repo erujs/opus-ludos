@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.SERVICE_DOWN:
             return {
                 ...state,
-                status: 503
+                status: 200
             };
         default:
             return state;
