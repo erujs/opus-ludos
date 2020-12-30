@@ -19,9 +19,9 @@ const Home = (props) => {
             <Box className={classes.adminBox}>
                 <Container maxWidth="md" className={classes.heroContent}>
                     <Box className={classes.headerText}>
-                        <Typography variant="h1" className={classes.title}>GKNB?</Typography>
+                        <Typography variant="h1" className={classes.title}>Novus</Typography>
                         <Typography className={classes.description}>
-                            Games 'n' keyboards or gknb for short is a web application game launcher(prototype). Where you can submit and share your game while having fun.
+                            Novus is a web application game launcher(prototype). Where you can submit and share your game while having fun.
                         </Typography>
                     </Box>
                     <Box className={classes.headerImage}>

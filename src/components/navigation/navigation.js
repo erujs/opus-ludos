@@ -30,7 +30,7 @@ const Navigation = (props) => {
             <AppBar position="relative">
                 <Toolbar>
                     <VideogameAssetIcon className={classes.icon}/>
-                    <Typography variant="h6" className={classes.typography} noWrap>gknb</Typography>
+                    <Typography variant="h6" className={classes.typography} noWrap>novus</Typography>
                 </Toolbar>
             </AppBar>
         </ThemeProvider>
