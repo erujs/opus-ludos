@@ -24,5 +24,6 @@ steps:
   args:
   - app
   - deploy
+  - app.yaml
   - --no-promote
 timeout: '600s'
