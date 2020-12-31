@@ -9,8 +9,7 @@
     width: 100%;
 }
 .editButton{
-    background-color: #aff6cf;
-    background-image: linear-gradient(315deg, #aff6cf 0%, #9f98e8 74%);
+    background-color: #864ba2 !important;
 }
 .editModalBtn{
     min-width: 40% !important;

@@ -45,9 +45,9 @@ class Edit extends Component {
     }
 
     render() {
-        let renderGenre = this.props.genre.map((genre, k) => (
+        let renderGenre = this.props.genre ? this.props.genre.map((genre, k) => (
             <MenuItem key={k} value={genre}>{genre}</MenuItem>
-            ))
+            )): null
         let renderStatus = ['Active', 'Beta', 'Maintenance', 'Inactive'];
         renderStatus = renderStatus.map((status) => (
             <MenuItem value={status}>{status}</MenuItem>
