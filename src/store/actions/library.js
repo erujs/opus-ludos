@@ -17,9 +17,8 @@ export const serviceFailure = () => {
 //read
 export const initData = () => {
     return dispatch => {
-        axios.post('/game/all', {'offset': 0, 'limit': 100})
+        axios.get('/games.json')
         .then(response => {
-            console.log(response)
             dispatch(setData(response.data))
         }).catch(error => {
             console.log(error)
