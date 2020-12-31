@@ -8,6 +8,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 class Library extends Component {
     componentDidMount() {
         this.props.onInitData();
+        this.props.onInitGenre();
     }
     dataRender() {
         switch(this.props.status){
@@ -40,7 +41,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitData: () => dispatch(actions.initData())
+        onInitData: () => dispatch(actions.initData()),
+        onInitGenre: () => dispatch(actions.initGenre())
     };
 }
 

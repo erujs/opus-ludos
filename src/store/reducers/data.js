@@ -2,7 +2,8 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     status: null,
-    games: null
+    games: null,
+    genre: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +14,12 @@ const reducer = (state = initialState, action) => {
                 games: action.data,
                 status: 200
             };
+        case actionTypes.SET_GENRE:
+            return{
+                ...state,
+                genre: action.data,
+                status: 200
+            }
         case actionTypes.SERVICE_DOWN:
             return {
                 ...state,

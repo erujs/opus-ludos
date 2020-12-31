@@ -26,6 +26,7 @@ class Edit extends Component {
         }
         this.state = initialState
     }
+
     reset() {
         this.setState(this.initialState);
     }
@@ -44,6 +45,13 @@ class Edit extends Component {
     }
 
     render() {
+        let renderGenre = this.props.genre.map((genre, k) => (
+            <MenuItem key={k} value={genre}>{genre}</MenuItem>
+            ))
+        let renderStatus = ['Active', 'Beta', 'Maintenance', 'Inactive'];
+        renderStatus = renderStatus.map((status) => (
+            <MenuItem value={status}>{status}</MenuItem>
+        ))
         return (
             <Grid xs={12} sm={6} md={4} item>
                 <Dialog title={"Edit"} children={
@@ -64,17 +72,7 @@ class Edit extends Component {
                                 onChange={this.selectHandler.bind(this)}
                                 label="Genre"
                             >
-                                <MenuItem value={1}>Action</MenuItem>
-                                <MenuItem value={2}>Adventure</MenuItem>
-                                <MenuItem value={3}>MMORPG</MenuItem>
-                                <MenuItem value={4}>RPG</MenuItem>
-                                <MenuItem value={5}>Simulation</MenuItem>
-                                <MenuItem value={6}>Strategy</MenuItem>
-                                <MenuItem value={7}>Sports</MenuItem>
-                                <MenuItem value={8}>MMO</MenuItem>
-                                <MenuItem value={9}>Party</MenuItem>
-                                <MenuItem value={10}>Programming</MenuItem>
-                                <MenuItem value={11}>Trivia</MenuItem>
+                                {renderGenre}
                             </Select>
                         </FormControl>
                         <TextField
@@ -89,10 +87,7 @@ class Edit extends Component {
                                 onChange={this.selectHandler.bind(this)}
                                 label="Status"
                             >
-                                <MenuItem value={1}>Active</MenuItem>
-                                <MenuItem value={2}>Beta</MenuItem>
-                                <MenuItem value={3}>Under Maintenance</MenuItem>
-                                <MenuItem value={4}>Inactive</MenuItem>
+                                {renderStatus}
                             </Select>
                         </FormControl>
                     </Box>

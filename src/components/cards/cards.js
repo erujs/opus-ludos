@@ -16,26 +16,30 @@ import CardStatus from './cardstatus/cardstatus';
 
 const Cards = (props) => {
     AOS.init();
-    let cards = props.games.map((card) => (
-        <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
-            <Card className={classes.card}>
-                <CardMedia className={classes.cardMedia} image="https://source.unsplash.com/random" />
-                <ActionCard card={card} uuid={card.uuid} page={props.page}/>
-                <CardContent className={classes.cardContent}>
-                    <Box>
-                        <Typography className={classes.gameName}>{card.game_name} </Typography>
-                        <Typography className={classes.Typography}>by {card.publisher}</Typography>
-                    </Box>
-                    <Box className={classes.gameDetails}>
-                        <Typography className={classes.Typography}>{card.version}</Typography>
-                        <Typography className={classes.Typography}>{moment(card.release_date).format('MMMM Do YYYY')}</Typography>
-                        <Typography className={classes.Typography}>{card.genre}</Typography>
-                    </Box>
-                </CardContent>
-                <CardStatus card={card} uuid={card.uuid} status={card.status} />
-            </Card>
-        </Grid>
-    ))
+    console.log(props.games)
+    let cards = null
+    if(props.games){
+        cards = props.games.map((card) => (
+            <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
+                <Card className={classes.card}>
+                    <CardMedia className={classes.cardMedia} image="https://source.unsplash.com/random" />
+                    <ActionCard card={card} uuid={card.uuid} page={props.page} genre={props.genre} />
+                    <CardContent className={classes.cardContent}>
+                        <Box>
+                            <Typography className={classes.gameName}>{card.game_name} </Typography>
+                            <Typography className={classes.Typography}>by {card.publisher}</Typography>
+                        </Box>
+                        <Box className={classes.gameDetails}>
+                            <Typography className={classes.Typography}>{card.version}</Typography>
+                            <Typography className={classes.Typography}>{moment(card.release_date).format('MMMM Do YYYY')}</Typography>
+                            <Typography className={classes.Typography}>{card.genre}</Typography>
+                        </Box>
+                    </CardContent>
+                    <CardStatus card={card} uuid={card.uuid} status={card.status} />
+                </Card>
+            </Grid>
+        ))
+    } 
     return (
         <React.Fragment>
             <Add />
@@ -47,7 +51,8 @@ const Cards = (props) => {
 
 const mapStateToProps = state => {
     return {
-        games: state.games
+        games: state.games,
+        genre: state.genre
     };
 }
 

@@ -5,13 +5,15 @@ import { CardActions,
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import Delete from '../delete/delete';
 import Edit from '../edit/edit';
-import classes from './cardactions.module.css'
+import classes from './cardactions.module.css';
+import { connect } from 'react-redux';
 
 const ActionCard = (props) => {
     const [isChecked, setIsChecked] = useState(false);
     const checkboxHandler = (event) =>{
         event.target.checked ? setIsChecked(true) : setIsChecked(false)
     }
+    console.log(props.genre)
     return (
         props.page === 'admin' ?
         <React.Fragment>
@@ -21,11 +23,11 @@ const ActionCard = (props) => {
             />
             <CardActions className={isChecked ? classes.cardActions : classes.hidden}>
                 <Delete uuid={props.uuid} />
-                <Edit card={props.card} />
+                <Edit card={props.card} genre={props.genre} />
             </CardActions>
         </React.Fragment>
         : null
     );
 }
 
-export default ActionCard;
+export default (ActionCard);

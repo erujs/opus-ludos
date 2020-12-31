@@ -1,11 +1,24 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios';
 
-export const setData = (data) => {
-    return{
-        type: actionTypes.SET_DATA_GAMES,
-        data: data
+export const setData = (data, response) => {
+    switch(response){
+        case 'games':
+            return{
+                type: actionTypes.SET_DATA_GAMES,
+                data: data
+            };
+        case 'genre':
+            return{
+                type: actionTypes.SET_GENRE,
+                data: data
+            }
+        default:
+            return{
+                type: actionTypes.SERVICE_DOWN
+            };
     }
+    
 }
 
 export const serviceFailure = () => {
@@ -19,13 +32,25 @@ export const initData = () => {
     return dispatch => {
         axios.get('/games.json')
         .then(response => {
-            dispatch(setData(response.data))
+            dispatch(setData(response.data, 'games'))
         }).catch(error => {
             console.log(error)
             dispatch(serviceFailure())
         })
     };
 };
+
+export const initGenre = () => {
+    return dispatch => {
+        axios.get('/genre.json')
+        .then(response => {
+            dispatch(setData(response.data, 'genre'))
+        }).catch(error => {
+            console.log(error)
+            dispatch(serviceFailure())
+        })
+    }
+}
 
 //create
 export const createData = (data) => {
