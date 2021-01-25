@@ -4,14 +4,14 @@ import { CssBaseline,
         Container,
         Grid,
         Box,
-        CardMedia, requirePropFactory } from '@material-ui/core';
+        CardMedia } from '@material-ui/core';
 import { connect } from 'react-redux';
 import Nav from '../navigation/navigation';
 import Cards from '../cards/cards';
 import Footer from '../footer/footer';
 import classes from './admin.module.css'
 
-const Home = (props) => {
+const Home = () => {
     return (
         <React.Fragment>
             <CssBaseline />

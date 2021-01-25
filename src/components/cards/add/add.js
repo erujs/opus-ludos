@@ -1,142 +1,108 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
-import { Grid, 
-        TextField, 
-        Button, 
-        FormControl, 
-        Select, 
-        InputLabel, 
-        MenuItem,
-        Box } from '@material-ui/core';
+import {
+    Grid,
+    TextField,
+    Button,
+    FormControl,
+    Select,
+    InputLabel,
+    MenuItem,
+    Box
+} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import Dialog from '../../modal/dialog';
 import classes from './add.module.css';
 
-const initialState = {
-    game_name: null,
-    publisher: null,
-    genre: 1,
-    version: null,
-    status: 1
-};
-class Add extends Component {
-    constructor(props) {
-        super(props);
-        this.state = initialState;
-        this.fileInput = React.createRef();
-    }
-    reset() {
-        this.setState(initialState);
+const Add = (props) => {
+    const [addState, setAddState] = useState({
+        game_name: null,
+        publisher: null,
+        genre: 'FPS',
+        version: null,
+        status: 'Active',
+        uuid: Math.floor((Math.random() * 1000) + 1),
+        release_date: Date.now(),
+    })
+
+    let submitHandler = () => {
+        props.onAddData(addState);
     }
 
-    submitHandler = () => {
-        this.props.onAddData(this.state);
-        this.reset();
+    let changeHandler = (event) => {
+        console.log(event.target)
+        setAddState({ ...addState, [event.target.id]: event.target.value })
     }
 
-    changeHandler = (event) => {
-        this.setState({ [event.target.id]: event.target.value })
+    let selectHandler = (event) => {
+        setAddState({ ...addState, [event.target.name]: event.target.value })
     }
 
-    selectHandler = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
-    }
+    let renderGenre = props.genre ? props.genre.map((genre, k) => (
+        <MenuItem key={k} value={genre}>{genre}</MenuItem>
+    )) : null
+    let renderStatus = ['Active', 'Beta', 'Maintenance', 'Inactive'];
+    renderStatus = renderStatus.map((status) => (
+        <MenuItem value={status}>{status}</MenuItem>
+    ))
 
-    // uploadImage = (event) => {
-    //     const formData = new FormData()
-    //     formData.append('file', this.fileInput.current.files[0].name)
-    //     fetch("https://asia-southeast2-gknb-api.cloudfunctions.net/gknb-storage-function/uploads", {
-    //         method: 'POST',
-    //         body: formData
-    //     })
-    //     .then(res => res.json())
-    //     .then(
-    //         (result) => console.log(result),
-    //         (error) => console.log(error)
-    //     )
-    // }
+    return (
+        <Grid xs={12} sm={6} md={4} item>
+            <Dialog title={"Add a game content"} children={
+                <Box className={classes.box}>
+                    <TextField
+                        id="game_name" label="Game Name" variant="outlined" className={classes.field}
+                        onChange={changeHandler.bind(this)} />
+                    <TextField
+                        id="publisher" label="Publisher" variant="outlined" className={classes.field}
+                        onChange={changeHandler.bind(this)} />
+                    <FormControl variant="outlined" className={classes.field}>
+                        <InputLabel id="genre">Genre</InputLabel>
+                        <Select
+                            name="genre"
+                            value={addState.genre}
+                            onChange={selectHandler.bind(this)}
+                            label="Genre"
+                        >
+                            {renderGenre}
+                        </Select>
+                    </FormControl>
+                    <TextField
+                        id="version" label="Version" variant="outlined" className={classes.field}
+                        onChange={changeHandler.bind(this)} />
 
-    // imageHandler = (event) => {
-    //     event.preventDefault();
-    //     this.uploadImage(event);
-    // }
-
-    render() {
-        // console.log(this.fileInput.current.files[0])
-        return (
-            <Grid xs={12} sm={6} md={4} item>
-                <Dialog title={"Add a game content"} children={
-                    <Box className={classes.box}>
-                    {/* <form onSubmit={this.imageHandler.bind(this)}>
-                        <label>
-                          Upload file:
-                          <input name='file' type="file" ref={this.fileInput} encType="multipart/form-data" />
-                        </label>
-                        <br />
-                        <button type="submit">Submit</button>
-                    </form> */}
-                        <TextField
-                            id="game_name" label="Game Name" variant="outlined" className={classes.field}
-                            onChange={this.changeHandler.bind(this)} />
-                        <TextField
-                            id="publisher" label="Publisher" variant="outlined" className={classes.field}
-                            onChange={this.changeHandler.bind(this)} />
-                        <FormControl variant="outlined" className={classes.field}>
-                            <InputLabel id="genre">Genre</InputLabel>
-                            <Select
-                                name="genre"
-                                defaultValue={1}
-                                onChange={this.selectHandler.bind(this)}
-                                label="Genre"
-                            >
-                                <MenuItem value={1}>Action</MenuItem>
-                                <MenuItem value={2}>Adventure</MenuItem>
-                                <MenuItem value={3}>MMORPG</MenuItem>
-                                <MenuItem value={4}>RPG</MenuItem>
-                                <MenuItem value={5}>Simulation</MenuItem>
-                                <MenuItem value={6}>Strategy</MenuItem>
-                                <MenuItem value={7}>Sports</MenuItem>
-                                <MenuItem value={8}>MMO</MenuItem>
-                                <MenuItem value={9}>Party</MenuItem>
-                                <MenuItem value={10}>Programming</MenuItem>
-                                <MenuItem value={11}>Trivia</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <TextField
-                            id="version" label="Version" variant="outlined" className={classes.field}
-                            onChange={this.changeHandler.bind(this)} />
-                        
-                        <FormControl variant="outlined" className={classes.field}>
-                            <InputLabel id="status">Status</InputLabel>
-                            <Select
-                                name="status"
-                                defaultValue={1}
-                                onChange={this.selectHandler.bind(this)}
-                                label="Status"
-                            >
-                                <MenuItem value={1}>Active</MenuItem>
-                                <MenuItem value={2}>Beta</MenuItem>
-                                <MenuItem value={3}>Under Maintenance</MenuItem>
-                                <MenuItem value={4}>Inactive</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Box>
-                } icon={<Button className={classes.addButton}><AddIcon className={classes.plus} fontSize='large' /></Button>} 
+                    <FormControl variant="outlined" className={classes.field}>
+                        <InputLabel id="status">Status</InputLabel>
+                        <Select
+                            name="status"
+                            value={addState.status}
+                            onChange={selectHandler.bind(this)}
+                            label="Status"
+                        >
+                            {renderStatus}
+                        </Select>
+                    </FormControl>
+                </Box>
+            } icon={<Button className={classes.addButton}><AddIcon className={classes.plus} fontSize='large' /></Button>}
                 modalAction={
-                    <Button variant="outlined" className={classes.addModalBtn} onClick={() => this.props.onAddData(this.state)}>Add</Button>
+                    <Button variant="outlined" className={classes.addModalBtn} onClick={() => submitHandler()}>Add</Button>
                 } />
-            </Grid>
-        )
-    }
+        </Grid>
+    )
+}
+
+const mapStateToProps = state => {
+    return {
+        genre: state.genre
+    };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddData: (data) => dispatch(actions.createData(data)),
-        // onUploadImage: (event) => dispatch(actions.uploadImage(event))
+        onAddData: (data) => dispatch(actions.createData(data))
     }
 }
 
-export default connect(null, mapDispatchToProps)(Add);
+export default connect(mapStateToProps, mapDispatchToProps)(Add);
 

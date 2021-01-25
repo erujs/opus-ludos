@@ -1,12 +1,14 @@
 import React from 'react';
-import { Card,
-        CardContent,
-        CardMedia,
-        Grid,
-        Typography,
-        Box } from '@material-ui/core';
+import {
+    Card,
+    CardContent,
+    Grid,
+    Typography,
+    Box
+} from '@material-ui/core';
 import { connect } from 'react-redux';
 import Add from './add/add';
+import Open from './open/open';
 import moment from 'moment';
 import 'aos/dist/aos.css'
 import AOS from 'aos';
@@ -16,13 +18,12 @@ import CardStatus from './cardstatus/cardstatus';
 
 const Cards = (props) => {
     AOS.init();
-    console.log(props.games)
     let cards = null
-    if(props.games){
+    if (props.games) {
         cards = props.games.map((card) => (
             <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
                 <Card className={classes.card}>
-                    <CardMedia className={classes.cardMedia} image="https://source.unsplash.com/random" />
+                    <Open />
                     <ActionCard card={card} uuid={card.uuid} page={props.page} genre={props.genre} />
                     <CardContent className={classes.cardContent}>
                         <Box>
@@ -39,7 +40,7 @@ const Cards = (props) => {
                 </Card>
             </Grid>
         ))
-    } 
+    }
     return (
         <React.Fragment>
             <Add />

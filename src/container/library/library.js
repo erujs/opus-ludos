@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import AppErr from '../../AppErr';
 import * as actions from '../../store/actions/index';

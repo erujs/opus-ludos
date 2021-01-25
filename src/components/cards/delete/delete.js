@@ -7,6 +7,7 @@ import Dialog from '../../modal/dialog';
 import classes from './delete.module.css';
 
 const Delete = (props) => {
+    console.log(props.delete)
     return (
         <Dialog title={"Delete ?"} children={
             <React.Fragment>

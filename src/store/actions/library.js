@@ -32,7 +32,13 @@ export const initData = () => {
     return dispatch => {
         axios.get('/games.json')
         .then(response => {
-            dispatch(setData(response.data, 'games'))
+            const fetchedGames = [];
+            for(let key in response.data) {
+                fetchedGames.push({
+                    ...response.data[key]
+                })
+            }
+            dispatch(setData(fetchedGames, 'games'))
         }).catch(error => {
             console.log(error)
             dispatch(serviceFailure())
@@ -56,7 +62,7 @@ export const initGenre = () => {
 export const createData = (data) => {
     console.log(data)
     return dispatch => {
-        axios.post('/game/add', data)
+        axios.post('/games.json', data)
         .then(response => {
             console.log(response)
             dispatch(initData())
@@ -69,8 +75,9 @@ export const createData = (data) => {
 
 //delete
 export const deleteData = (uuid) => {
+    console.log(uuid)
     return dispatch => {
-        axios.delete('/game/' + uuid)
+        axios.delete('/games.json/' + uuid)
         .then(response => {
             console.log(response)
             dispatch(initData())
