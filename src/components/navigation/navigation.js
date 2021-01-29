@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Navigation = (props) => {
+const Navigation = () => {
     const classes = useStyles();
     return (
         <ThemeProvider theme={customTheme}>

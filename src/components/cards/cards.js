@@ -23,7 +23,7 @@ const Cards = (props) => {
         cards = props.games.map((card) => (
             <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
                 <Card className={classes.card}>
-                    <Open />
+                    <Open link={card.url}/>
                     <ActionCard card={card} uuid={card.uuid} page={props.page} genre={props.genre} />
                     <CardContent className={classes.cardContent}>
                         <Box>

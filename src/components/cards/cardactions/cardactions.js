@@ -31,4 +31,4 @@ const ActionCard = (props) => {
     );
 }
 
-export default (ActionCard);
+export default ActionCard;

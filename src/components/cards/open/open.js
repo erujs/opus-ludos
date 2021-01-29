@@ -6,12 +6,12 @@ import {
     CardMedia
 } from '@material-ui/core';
 
-const Open = () => {
+const Open = (props) => {
     const [isHovered, setIsHovered] = useState(false);
     const hoverHandler = () => setIsHovered(!isHovered)
 
     return(
-        <Link href="#" onMouseEnter={hoverHandler.bind(this)} onMouseLeave={hoverHandler.bind(this)}>
+        <Link href={props.link} onMouseEnter={hoverHandler.bind(this)} onMouseLeave={hoverHandler.bind(this)}>
             <CardMedia className={classes.cardMedia} image="https://source.unsplash.com/random" >
                 <OpenInNewIcon className={isHovered ? classes.open : classes.hidden} />
             </CardMedia>

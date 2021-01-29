@@ -24,6 +24,7 @@ const Add = (props) => {
         status: 'Active',
         uuid: Math.floor((Math.random() * 1000) + 1),
         release_date: Date.now(),
+        url: null
     })
 
     let submitHandler = () => {
@@ -83,6 +84,9 @@ const Add = (props) => {
                             {renderStatus}
                         </Select>
                     </FormControl>
+                    <TextField
+                        id="url" label="Link" variant="outlined" className={classes.field}
+                        onChange={changeHandler.bind(this)} />
                 </Box>
             } icon={<Button className={classes.addButton}><AddIcon className={classes.plus} fontSize='large' /></Button>}
                 modalAction={
