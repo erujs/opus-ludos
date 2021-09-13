@@ -15,28 +15,26 @@ const Home = () => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Nav />
             <Box className={classes.adminBox}>
-                <Container maxWidth="md" className={classes.heroContent}>
+                <Nav />
+                {/* <Container maxWidth="md" className={classes.heroContent}>
                     <Box className={classes.headerText}>
                         <Typography variant="h1" className={classes.title}>Novus</Typography>
-                        <Typography className={classes.description}>
-                            Novus is a web application game launcher(prototype). Where you can submit and share your game while having fun.
-                        </Typography>
+                        <Typography className={classes.description}>Novus is a web application game library.</Typography>
                     </Box>
                     <Box className={classes.headerImage}>
                         <Box className={classes.imageContainer}>
                             <CardMedia className={classes.image} image={require('../../assets/undraw.svg')} />
                         </Box>
                     </Box>
-                </Container>
+                </Container> */}
                 <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={4}>
                         <Cards page={"admin"} />
                     </Grid>
                 </Container>
             </Box>
-            <Footer />
+            {/* <Footer /> */}
         </React.Fragment>
     );
 }

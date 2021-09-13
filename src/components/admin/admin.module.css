@@ -1,7 +1,8 @@
 .adminBox{
-    background: url("../../assets/bg.jpg");
-    background-size: 100%;
-    padding-bottom: calc(6 * 8px);
+    /* background: url("../../assets/bg.jpg"); */
+    /* background-size: 100%; */
+    background-color: #404040;
+    height: 100vh;
 }
 .heroContent {
     color: white;
