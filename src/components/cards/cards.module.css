@@ -12,9 +12,8 @@
     flex-flow: row;
     justify-content: space-between;
     flex-grow: 1;
-    color: white;
-    background-color: maroon;
-    background-image: linear-gradient(135deg, maroon 0%, #864ba2 74%);
+    color: black;
+    background-color: white;
 }
 .Typography {
     font-size: 12px !important;

@@ -6,7 +6,6 @@ import { CssBaseline,
         Box,
         CardMedia } from '@material-ui/core';
 import { connect } from 'react-redux';
-import Nav from '../navigation/navigation';
 import Cards from '../cards/cards';
 import Footer from '../footer/footer';
 import classes from './admin.module.css'
@@ -16,7 +15,6 @@ const Home = () => {
         <React.Fragment>
             <CssBaseline />
             <Box className={classes.adminBox}>
-                <Nav />
                 {/* <Container maxWidth="md" className={classes.heroContent}>
                     <Box className={classes.headerText}>
                         <Typography variant="h1" className={classes.title}>Novus</Typography>

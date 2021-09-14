@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Layout from '../../hoc/Layout/Layout';
 import { connect } from 'react-redux';
 import AppErr from '../../AppErr';
 import * as actions from '../../store/actions/index';
@@ -14,9 +15,10 @@ const Library = (props) => {
         switch(props.status){
             case 200:
                 return(
-                    <Admin />
-                    // <Users />
-                    // <>
+                    <Layout>
+                        <Admin />
+                        {/* <Users /> */}
+                    </Layout>
                 )
             case 503:
                 return <AppErr errorcode={"[503] Service Unavailable!"} 
