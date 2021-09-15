@@ -1,7 +1,8 @@
 .adminBox{
     /* background: url("../../assets/bg.jpg"); */
     /* background-size: 100%; */
-    background-color: #404040;
+    background-color: teal;
+    background: linear-gradient(45deg, black 0%, teal 90%);
     height: 100vh;
     padding: 5% 0;
 }
@@ -69,7 +70,15 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
     }
+    .cardGrid{
+        margin-left: 240px !important;
+    }
     .image{
         height: 312px;
+    }
+}
+@media(min-width: 1440px){
+    .cardGrid{
+        margin-left: auto !important;
     }
 }
