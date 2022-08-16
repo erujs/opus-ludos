@@ -5,12 +5,13 @@ import { CssBaseline,
         Grid,
         Box,
         CardMedia } from '@material-ui/core';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Cards from '../cards/cards';
 import Footer from '../footer/footer';
 import classes from './admin.module.css'
 
 const Home = () => {
+    const { games } = useSelector(state => state.games);
     return (
         <React.Fragment>
             <CssBaseline />
@@ -43,4 +44,4 @@ const mapStateToProps = state => {
     };
 }
 
-export default connect(mapStateToProps, null)(Home);
+export default Home;
