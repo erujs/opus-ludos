@@ -1,31 +1,36 @@
 import React, { useEffect } from 'react';
 import Layout from '../../hoc/Layout/Layout';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AppErr from '../../AppErr';
-import * as actions from '../../store/actions/index';
+import { initGenre, initData } from '../../store/actions/index';
 import Admin from '../../components/admin/admin';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import PropTypes from 'prop-types';
 
-const Library = (props) => {
+const Library = () => {
+    const { status } = useSelector(state => state.status)
+    const dispatch = useDispatch();
+
     useEffect(() => {
-        props.onInitData();
-        props.onInitGenre();
-    })
+        dispatch(initData())
+        dispatch(initGenre())
+    }, [dispatch])
+
     let dataRender = () => {
-        switch(props.status){
+        switch (status) {
             case 200:
-                return(
+                return (
                     <Layout>
                         <Admin />
                         {/* <Users /> */}
                     </Layout>
                 )
             case 503:
-                return <AppErr errorcode={"[503] Service Unavailable!"} 
+                return <AppErr errorcode={"[503] Service Unavailable!"}
                     info={"Server is down, kindly refresh the page"} />
             case 204:
-                return <AppErr errorcode={"[204] No Response!"} 
-                    info={"Data cannot find in the server, check URL or contact the administrator"}/>
+                return <AppErr errorcode={"[204] No Response!"}
+                    info={"Data cannot find in the server, check URL or contact the administrator"} />
             default:
                 return <LinearProgress />
         }
@@ -33,17 +38,8 @@ const Library = (props) => {
     return dataRender();
 }
 
-const mapStateToProps = state => {
-    return {
-        status: state.status
-    };
+Library.PropTypes = {
+    actions: PropTypes.func,
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onInitData: () => dispatch(actions.initData()),
-        onInitGenre: () => dispatch(actions.initGenre())
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Library);
+export default Library;
