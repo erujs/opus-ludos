@@ -1,1 +1,0 @@
-export { initData, initGenre, createData, deleteData, editData, uploadImage } from './library';

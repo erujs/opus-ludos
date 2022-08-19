@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Typography } from '@material-ui/core';
 import { connect } from 'react-redux';
-import * as actions from '../../../store/actions/index';
+import * as actions from '../../../store/actions/actions';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import Dialog from '../../modal/dialog';
 import classes from './delete.module.css';

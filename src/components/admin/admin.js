@@ -11,7 +11,7 @@ import Footer from '../footer/footer';
 import classes from './admin.module.css'
 
 const Home = () => {
-    const { games } = useSelector(state => state.games);
+    const { games } = useSelector(state => state);
     return (
         <React.Fragment>
             <CssBaseline />
