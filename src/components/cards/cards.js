@@ -1,60 +1,91 @@
 import React from 'react';
-import {
-    Card,
-    CardContent,
-    Grid,
-    Typography,
-    Box
-} from '@material-ui/core';
-import { connect } from 'react-redux';
-import Add from './add/add';
-import Open from './open/open';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
-import 'aos/dist/aos.css'
 import AOS from 'aos';
-import classes from './cards.module.css'
-import ActionCard from './cardactions/cardactions';
-import CardStatus from './cardstatus/cardstatus';
+import 'aos/dist/aos.css'
+import ModalContent from '../modal/modal-content';
+import Delete from './delete/delete';
+import {
+  Grid,
+  Card,
+  Link,
+  CardMedia,
+  CardContent,
+  Box,
+  Typography,
+  Fab,
+  Button,
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import AddIcon from '@mui/icons-material/Add';
+import { styled } from '@mui/material/styles';
 
-const Cards = (props) => {
-    AOS.init();
-    let cards = null
-    if (props.games) {
-        cards = props.games.map((card) => (
-            <Grid key={card.uuid} xs={12} sm={6} md={4} item data-aos="fade-up">
-                <Card className={classes.card}>
-                    <Open link={card.url}/>
-                    <ActionCard card={card} uuid={card.uuid} page={props.page} genre={props.genre} />
-                    <CardContent className={classes.cardContent}>
-                        <Box>
-                            <Typography className={classes.gameName}>{card.game_name} </Typography>
-                            <Typography className={classes.Typography}>by {card.publisher}</Typography>
-                        </Box>
-                        <Box className={classes.gameDetails}>
-                            <Typography className={classes.Typography}>{card.version}</Typography>
-                            <Typography className={classes.Typography}>{moment(card.release_date).format('MMMM Do YYYY')}</Typography>
-                            <Typography className={classes.Typography}>{card.genre}</Typography>
-                        </Box>
-                    </CardContent>
-                    <CardStatus card={card} uuid={card.uuid} status={card.status} />
-                </Card>
-            </Grid>
-        ))
+const CustomizedTypography = styled(Typography)(
+  () => `
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8), 0px 0px 2px  rgba(0,0,0,1);
+  `
+)
+
+const Cards = () => {
+  AOS.init();
+  const { games, auth } = useSelector(state => state);
+
+  const renderComponent = () => {
+    if (games) {
+      return games.map((card) => (
+        <Grid item key={card.uuid} xs={12} sm={6} md={4} data-aos="fade-up">
+          <Card fullWidth sx={{ height: '325px' }}>
+            <Link href={card.url} target="_blank">
+              <CardMedia component='img' height='325' image={card.image} />
+            </Link>
+            <CardContent>
+              <Box sx={{ position: 'absolute', top: 40 }}>
+                <CustomizedTypography>{card.name} v{card.version}</CustomizedTypography>
+                <CustomizedTypography>by {card.publisher}</CustomizedTypography>
+                <CustomizedTypography>{moment(card.release_date).format('MMMM Do YYYY')}</CustomizedTypography>
+                <CustomizedTypography>{card.genre}</CustomizedTypography>
+              </Box>
+              {
+                auth === 'admin'
+                  ? <ModalContent
+                    title={"Modify"}
+                    card={card}
+                    uuid={card.uuid}
+                    delete={<Delete />}
+                    icon={
+                      <Fab size="small" sx={{ position: 'absolute', bottom: 10, right: 10 }} aria-label="edit">
+                        <EditIcon />
+                      </Fab>
+                    }
+                    modalAction={'Edit'} />
+                  : null
+              }
+            </CardContent>
+          </Card>
+        </Grid>
+      ))
     }
-    return (
-        <React.Fragment>
-            <Add />
-            {cards}
-            <div data-aos="fade-up" />
-        </React.Fragment>
-    );
+    return null;
+  }
+  return (
+    <>
+      {
+        auth === 'admin'
+          ? <ModalContent
+            title={"Add"}
+            icon={
+              <Button variant="outlined" fullWidth sx={{ height: '325px' }}>
+                <AddIcon fontSize='large' />
+              </Button>
+            }
+            modalAction={'Add'} />
+          : null
+      }
+      {renderComponent()}
+      <div data-aos="fade-up" />
+    </>
+  );
 }
 
-const mapStateToProps = state => {
-    return {
-        games: state.games,
-        genre: state.genre
-    };
-}
-
-export default connect(mapStateToProps, null)(Cards);
+export default Cards;

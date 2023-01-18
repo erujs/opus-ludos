@@ -1,0 +1,36 @@
+.div{
+  display: flex;
+  justify-content: center;
+  margin: .5rem;
+  cursor: pointer;
+}
+
+.code {
+  z-index: 1;
+  padding: 5px 10px;
+  font-size: 11px;
+
+  /* for position fixed */
+  /* margin: 0px;
+    top: auto;
+    right: 20px;
+    bottom: 20px;
+    left: auto;
+    position: fixed; */
+}
+
+.light {
+  color: white;
+  border: 1px solid white;
+}
+
+.dark {
+  color: black;
+  border: 1px solid black;
+}
+
+@media screen and (min-width: 768px) {
+  .div {
+    justify-content: flex-end;
+  }
+}

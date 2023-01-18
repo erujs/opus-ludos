@@ -1,14 +1,14 @@
 import React from 'react';
-import {Route, Switch} from "react-router-dom";
-import Error from './container/error/error';
-import Home from './container/home/home';
+import { Route, Routes } from "react-router-dom";
+import Error from './container/error/error.view';
+import Home from './container/home/home.view';
 
 function App() {
   return (
-    <Switch>
-      <Route path="/" exact component={Home} />
+    <Routes>
+      <Route path="/" exact element={<Home />} />
       <Route render={() => <Error errorcode={"ERROR [404]"} info={"Page Not Found!"} />} />
-    </Switch>
+    </Routes>
   );
 }
 

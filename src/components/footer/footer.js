@@ -1,31 +1,27 @@
 import React from 'react';
-import { Typography, Link } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import {
+  Box,
+  Typography,
+} from '@mui/material';
 
-const useStyles = makeStyles((theme) => ({
-    footer: {
-        backgroundColor: theme.palette.background.paper,
-        padding: theme.spacing(6)
-    },
-}));
-
-const Footer = () => {
-    const classes = useStyles();
-    return (
-        <footer className={classes.footer}>
-            <Typography variant="subtitle1" align="center" color="textPrimary" component="p">
-                "If you're not being challenged, you're not learning" ~ Christopher R. Perez
-            </Typography>
-            <Typography variant="body2" color="textPrimary" align="center">
-                {'Copyright © '}
-                <Link color="inherit" href="#">
-                    CollabSF
-                </Link>{' '}
-                {new Date().getFullYear()}
-                {'.'}
-            </Typography>
-        </footer>
-    )
+const Footer = (props) => {
+  return (
+    <Box
+      component="footer"
+      sx={{
+        py: 3,
+        px: 2,
+        mt: 'auto',
+      }}>
+      <Typography variant="body1" align="center">
+        "If you're not being challenged, you're not learning"
+      </Typography>
+      <Typography variant="body1" align="center">
+        ~ Christopher R. Perez
+      </Typography>
+      {props.children}
+    </Box>
+  )
 }
 
 export default Footer;
