@@ -22,7 +22,7 @@ const Modal = (props) => {
   return (
     <>
       <Box onClick={handleClickOpen}>{props.icon}</Box>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} fullWidth>
         <DialogTitle>
           {props.title}
           <IconButton onClick={handleClose} sx={{ position: 'absolute', top: 10, right: 10 }} aria-label="close">

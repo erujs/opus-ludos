@@ -7,8 +7,7 @@
 
 .code {
   z-index: 1;
-  padding: 5px 10px;
-  font-size: 11px;
+  padding: .5rem;
 
   /* for position fixed */
   /* margin: 0px;

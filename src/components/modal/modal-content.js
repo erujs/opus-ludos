@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 import { createData, editData } from '../../store/actions/actions';
 import Modal from './modal';
 import {
@@ -17,7 +18,7 @@ const ModalContent = (props) => {
     version: null,
     status: 'Active',
     uuid: Math.floor((Math.random() * 1000) + 1),
-    release_date: Date.now(),
+    release_date: moment(Date.now()).format('MMMM Do YYYY'),
     url: null,
     image: 'https://source.unsplash.com/random',
   }

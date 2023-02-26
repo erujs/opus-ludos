@@ -4,6 +4,7 @@ import moment from 'moment';
 import AOS from 'aos';
 import 'aos/dist/aos.css'
 import ModalContent from '../modal/modal-content';
+import Modal from '../modal/modal';
 import Delete from './delete/delete';
 import {
   Grid,
@@ -18,14 +19,7 @@ import {
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-import { styled } from '@mui/material/styles';
-
-const CustomizedTypography = styled(Typography)(
-  () => `
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.8), 0px 0px 2px  rgba(0,0,0,1);
-  `
-)
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 const Cards = () => {
   AOS.init();
@@ -40,11 +34,27 @@ const Cards = () => {
               <CardMedia component='img' height='325' image={card.image} />
             </Link>
             <CardContent>
-              <Box sx={{ position: 'absolute', top: 40 }}>
-                <CustomizedTypography>{card.name} v{card.version}</CustomizedTypography>
-                <CustomizedTypography>by {card.publisher}</CustomizedTypography>
-                <CustomizedTypography>{moment(card.release_date).format('MMMM Do YYYY')}</CustomizedTypography>
-                <CustomizedTypography>{card.genre}</CustomizedTypography>
+              <Box sx={{
+                position: 'absolute',
+                top: 40,
+                right: 10,
+              }}>
+                <Modal
+                  icon={
+                    <Fab size="small" aria-label="info">
+                      <MoreHorizIcon />
+                    </Fab>
+                  }
+                  title={card.name}
+                  children={
+                    <>
+                      <Typography>Version {card.version}</Typography>
+                      <Typography>Published by {card.publisher}</Typography>
+                      <Typography>Released {moment(card.release_date).format('MMMM Do YYYY')}</Typography>
+                      <Typography>{card.genre} genre</Typography>
+                    </>
+                  }
+                />
               </Box>
               {
                 auth === 'admin'
@@ -58,7 +68,8 @@ const Cards = () => {
                         <EditIcon />
                       </Fab>
                     }
-                    modalAction={'Edit'} />
+                    modalAction={'Edit'}
+                  />
                   : null
               }
             </CardContent>
