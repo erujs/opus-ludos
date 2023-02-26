@@ -4,7 +4,7 @@ const initialState = {
   status: null,
   games: null,
   genre: null,
-  auth: 'admin',
+  auth: null,
   error: null,
 }
 

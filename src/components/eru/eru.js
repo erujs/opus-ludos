@@ -9,14 +9,14 @@ const Eru = (props) => {
   }, [props]);
 
   const handleClick = () => {
-    window.open('https://github.com/Last-First');
+    window.open('https://github.com/Eru-js');
   };
 
   return (
     <div className={styles.div} onClick={handleClick}>
       <code
         className={[styles.code, color === 'dark' ? styles.light : styles.dark].join(' ')}>
-      dev with ♡ By Jrsqn
+      dev with ♡ By Eru
       </code>
     </div>
   )
